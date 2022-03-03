@@ -12,8 +12,6 @@ st.sidebar.markdown("2. Select desired Gender Status or Year")
 st.sidebar.markdown("*For best Results use 'Both' and 'All'.*")
 st.sidebar.markdown("3. Clarify more specific data")
 st.sidebar.title("Future Work:")
-st.sidebar.markdown(" - Forecasting w/ sliders")
-st.sidebar.markdown(" - Adoption Slider")
 st.sidebar.markdown(" - More gender breakdowns")
 st.sidebar.markdown(" - Party affilation")
 st.sidebar.markdown("*Peter Rigali*")
@@ -118,7 +116,7 @@ elif select == 'What Ages are Represented?':
 
 elif select == 'What is the Potential Impact?':
     st.header('2.  Forecasting')
-    st.markdown('*Here we are looking into the future.*')
+    st.markdown('*Looking into the future.*')
     per = st.slider('Impact Percent', 0.0, 1.0, .05, .05)
     st.markdown('*Select Estimated Implementation Percent*')
     ages = st.multiselect('Ages', age_lst_min, ['18 THRU 19', '_20_', '_21_', '22 THRU 24'])

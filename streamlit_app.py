@@ -77,7 +77,7 @@ elif select == 'What Age is Represented?':
     if over_time == 'Yes':
         age_lst = ['18 THRU 19', '20', '21', '22 THRU 24', '25 THRU 34', '35 THRU 44', '45 THRU 54', '55 THRU 59',
                    '60 THRU 61', '62 THRU 64', '65 THRU 74', 'ABOVE 75', 'TOTAL']
-        ages = st.multiselect('Ages', age_lst)
+        ages = list(st.multiselect('Ages', age_lst))
 
         age_df_lst = []
         for age in ages:

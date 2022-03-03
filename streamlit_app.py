@@ -17,3 +17,5 @@ st.sidebar.markdown("*All weapons are included up until mid-season 6.*")
 turn_df = pd.read_csv('./data/turn.csv', index_col='Unnamed: 0')
 election_df = pd.read_csv('./data/election.csv', index_col='Unnamed: 0')
 age_df = pd.read_csv('./data/age.csv', index_col='Unnamed: 0')
+
+st.bar_chart(turn_out.groupby(['Year', 'Pre or Post']).sum().T)

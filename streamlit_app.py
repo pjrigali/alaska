@@ -136,13 +136,15 @@ elif select == 'Whats the Potentional Impact?':
 
     st.line_chart(forecast)
     col1, col2, col3 = st.columns(3)
-    # val1 = df.loc['2020'].sum()
-    val1 = sum(expected.tolist())
+    val = df.loc['2020'].sum()
+    val1 = round(sum(expected.tolist()), 1)
     val2 = round(sum(new_vals.values()),1)
-    val3 = (val2-val1) / val1
-    col1.metric('Current Forecast', val1)
+    val3 = (val1 - val) / val
+    val4 = (val1 - val2) / val
+    col1.metric('Expected Forecast', val1)
+    col2.metric('Expected Percent', val3)
     col2.metric('Implementation Forecast', val2)
-    col3.metric('Percent Change', val3)
+    col3.metric('Implementatio Percent Change', val4)
 
     show = st.selectbox('Show Data', ['No', 'Yes'])
     if show == 'Yes':

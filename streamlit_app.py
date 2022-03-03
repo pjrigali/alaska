@@ -59,10 +59,10 @@ else:
     else:
         # df = turn_df[(turn_df['Age'] == 'TOTALS')][['Year', default]].set_index('Year')
         df1 = turn_df[(turn_df['Age'] == 'TOTALS') & (turn_df['Pre or Post'] == 'Voted')][
-            ['Year', 'Female']].set_index('Year')
+            ['Year', default]].set_index('Year')
         df1.columns = ['Voted']
         df2 = turn_df[(turn_df['Age'] == 'TOTALS') & (turn_df['Pre or Post'] == 'Registered')][
-            ['Year', 'Female']].set_index('Year')
+            ['Year', default]].set_index('Year')
         df2.columns = ['Registered']
         df = pd.concat([df1, df2], axis=1)
 st.bar_chart(df)

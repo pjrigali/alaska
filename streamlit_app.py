@@ -75,7 +75,7 @@ elif select == 'What Age is Represented?':
 
     over_time = st.selectbox('Over Time?', ['No', 'Yes'])
     if over_time == 'Yes':
-        age_lst = ['18 THRU 19', '20', '21', '22 THRU 24', '25 THRU 34', '35 THRU 44', '45 THRU 54', '55 THRU 59',
+        age_lst = ['18 THRU 19', '_20_', '_21_', '22 THRU 24', '25 THRU 34', '35 THRU 44', '45 THRU 54', '55 THRU 59',
                    '60 THRU 61', '62 THRU 64', '65 THRU 74', 'ABOVE 75', 'TOTAL']
         ages = st.selectbox('Ages', age_lst)
         # temp_df = age_df[age_df['Age'] == ages][['Total', 'Age', 'Year']].set_index('Year')

@@ -21,14 +21,19 @@ age_df = pd.read_csv('./data/age.csv', index_col='Unnamed: 0')
 # Registered Verse Turnout
 st.header('Comparing Registered and Voting Numbers')
 default = st.selectbox('Default', ['Female', 'Male', 'Unspecified', 'Total'])
-pre_post = st.selectbox('Default', ['Registered', 'Voted'])
+pre_post = st.selectbox('Default', ['Registered', 'Voted', 'Both'])
 
 if default is 'Unspecified':
     default = 'Unknown'
 
-if default is 'Total':
-    df = turn_df[(turn_df['Age'] == 'TOTALS') & (turn_df['Pre or Post'] ==  pre_post)][['Year', 'Female', 'Male', 'Unknown']].set_index('Year').sum(axis=1)
+if pre_post in {'Registered': True, 'Voted': True}:
+    if default is 'Total':
+        df = turn_df[(turn_df['Age'] == 'TOTALS') & (turn_df['Pre or Post'] ==  pre_post)][['Year', 'Female', 'Male', 'Unknown']].set_index('Year').sum(axis=1)
+    else:
+        df = turn_df[(turn_df['Age'] == 'TOTALS') & (turn_df['Pre or Post'] == pre_post)][['Year', default]].set_index('Year')
 else:
-    df = turn_df[(turn_df['Age'] == 'TOTALS') & (turn_df['Pre or Post'] == pre_post)][['Year', default]].set_index('Year')
-
+    if default is 'Total':
+        df = turn_df[(turn_df['Age'] == 'TOTALS')][['Year', 'Female', 'Male', 'Unknown']].set_index('Year').sum(axis=1)
+    else:
+        df = turn_df[(turn_df['Age'] == 'TOTALS')][['Year', default]].set_index('Year')
 st.bar_chart(df)

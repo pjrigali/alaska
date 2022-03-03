@@ -119,5 +119,5 @@ elif select == 'What Age is Represented?':
 elif select == 'Whats the Potentional Impact?':
     st.header('2.  Forecasting')
     st.markdown('blah blah blah')
-    per = st.slider('Impact Percent', 0.0, 1.0, .05)
+    per = st.slider('Impact Percent', 0.0, 1.0, .05, .05)
 

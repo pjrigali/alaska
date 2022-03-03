@@ -120,6 +120,7 @@ elif select == 'Whats the Potentional Impact?':
     st.header('2.  Forecasting')
     st.markdown('*Here we are looking into the future.*')
     per = st.slider('Impact Percent', 0.0, 1.0, .05, .05)
+    st.markdown('*Select Estimated Implementation Percent*')
     ages = st.multiselect('Ages', age_lst_min)
     st.markdown('*Select Ages to be affected by the implementation*')
     ages_dic = {i: True for i in ages}

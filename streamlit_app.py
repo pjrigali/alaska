@@ -139,6 +139,7 @@ elif select == 'What is the Potential Impact?':
     forecast = pd.concat([df, new_line])
 
     st.line_chart(forecast)
+    st.markdown("*Forecasted values for 2022*")
 
     val = df.loc['2020'].sum()
     val1 = sum(expected.tolist())

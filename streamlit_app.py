@@ -125,9 +125,6 @@ elif select == 'Whats the Potentional Impact?':
     df = pd.pivot_table(age_df, values='Total', index='Year', columns='Age')
     expected = df.mean()
     increase = expected * per
-    st.dataframe(expected)
-    # st.dataframe(increase)
-
     new_vals = {}
     for i in list(df.columns):
         if i not in ages_dic:
@@ -136,6 +133,5 @@ elif select == 'Whats the Potentional Impact?':
             new_vals[i] = expected[i] + increase[i]
     new_line = pd.DataFrame(new_vals, index=['2022']).round(1)
     st.dataframe(new_line)
-    # st.dataframe((df.mean() + df.mean() * per).round(1))
     st.dataframe(pd.concat([df, new_line]))
 

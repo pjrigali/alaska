@@ -150,7 +150,7 @@ elif select == 'Whats the Potentional Impact?':
 
     col3, col4 = st.columns(2)
     col3.metric('Implementation Voter Count Forecast', int(val2))
-    col4.metric('Implementatio Percent Change', round(val4 * 100, 1))
+    col4.metric('Implementation Percent Change', round(val4 * 100, 1))
 
     show = st.selectbox('Show Data', ['No', 'Yes'])
     if show == 'Yes':

@@ -63,5 +63,9 @@ if select == 'Who commits to Voting?':
         st.markdown('Above are the percentage of voters who actually showed up.')
 
 elif select == 'What Age is Represented?':
-    df = pd.pivot_table(age_df, values='Total', index='Year', columns='Age')
+    year = st.selectbox('Default',['2012', '2014', '2016', '2018', '2020', 'All'])
+    if year != 'All':
+        df = pd.pivot_table(age_df, values='Total', index='Year', columns='Age').loc[year]
+    else:
+        df = pd.pivot_table(age_df, values='Total', index='Year', columns='Age').sum()
     st.bar_chart(df)

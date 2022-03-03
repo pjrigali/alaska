@@ -96,7 +96,7 @@ elif select == 'What Age is Represented?':
         #     if j in age_dic:
         #         age_ind.append(i)
         # temp_df = age_df.iloc[age_ind]
-        df = pd.pivot_table(age_df, values='Total', index='Year', columns='Age')
+        df = pd.pivot_table(age_df, values='Total', index='Year', columns='Age')[ages]
         st.dataframe(df)
         st.line_chart(df[ages])
 

@@ -81,12 +81,12 @@ elif select == 'What Age is Represented?':
     age_lst = ['18 THRU 19', '_20_', '_21_', '22 THRU 24', '25 THRU 34', '35 THRU 44', '45 THRU 54', '55 THRU 59',
                '60 THRU 61', '62 THRU 64', '65 THRU 74', 'ABOVE 75']
     ages = st.multiselect('Ages', age_lst)
-    # dfn = pd.DataFrame()
-    # for i in ages:
-    #     dfn[i] = df[i].tolist()
+    dfn = pd.DataFrame()
+    for i in ages:
+        dfn[i] = df.loc[i]
     st.dataframe(df)
-    # col1 = st.columns(1)
-    # col1.metric(year, dfn / df['TOTAL'])
+    col1 = st.columns(1)
+    col1.metric(year, dfn / df['TOTAL'])
 
 
     over_time = st.selectbox('Over Time?', ['No', 'Yes'])

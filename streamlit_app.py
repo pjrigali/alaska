@@ -66,7 +66,7 @@ elif select == 'What Age is Represented?':
     year = st.selectbox('Default', ['2012', '2014', '2016', '2018', '2020', 'All'])
     temp_df = age_df[(age_df['Age'] != 'TOTAL') & (age_df['Age'] != 'UNKNOWN')][['Total', 'Age', 'Year']].set_index('Year')
     if year != 'All':
-        df = pd.pivot_table(temp_df, values='Total', index='Year', columns='Age').iloc[year]
+        df = pd.pivot_table(temp_df, values='Total', index='Year', columns='Age').loc[year]
     else:
         df = pd.pivot_table(temp_df, values='Total', index='Year', columns='Age').sum()
     st.bar_chart(df)

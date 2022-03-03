@@ -31,14 +31,14 @@ age_lst_min = ['18 THRU 19', '_20_', '_21_', '22 THRU 24', '25 THRU 34', '35 THR
 
 # Start the page
 st.header('1.  Select Desired Viz')
-select = st.selectbox('Desired Analysis', ['...', 'Who commits to Voting?', 'What Ages are Represented?', 'What is the Potential Impact?'])
+select = st.selectbox('Desired Analysis', ['...', 'Who Votes?', 'What Ages are Represented?', 'What is the Potential Impact?'])
 
 # Registered Verse Turnout
-if select == 'Who commits to Voting?':
+if select == 'Who Votes?':
     st.header('2.  Turnout Ratio')
-    st.markdown("Here we are comparing the amount of registed voters to those who actually show.")
-    default = st.selectbox('2.1.  Gender', ['Female', 'Male', 'Unspecified', 'Total'])
-    pre_post = st.selectbox('2.2.  Status', ['Registered', 'Voted', 'Both'])
+    st.markdown("Comparing registered voters to election vote tally.")
+    default = st.selectbox('2.1.  Gender', ['Female', 'Male', 'Unspecified', 'Total'], ['Total'])
+    pre_post = st.selectbox('2.2.  Status', ['Registered', 'Voted', 'Both'], ['Both'])
     st.markdown("If 'Both' is selected, ratios will be plotted.")
 
     if default is 'Unspecified':
@@ -81,7 +81,7 @@ if select == 'Who commits to Voting?':
 # Age Group Overview
 elif select == 'What Ages are Represented?':
     st.header("2.  Age Representation")
-    year = st.selectbox('2.1.  Year', ['2012', '2014', '2016', '2018', '2020', 'All'])
+    year = st.selectbox('2.1.  Year', ['2012', '2014', '2016', '2018', '2020', 'All'], ['All'])
     temp_df = age_df[(age_df['Age'] != 'TOTAL') & (age_df['Age'] != 'UNKNOWN')][['Total', 'Age', 'Year']].set_index('Year')
     if year != 'All':
         df = pd.pivot_table(temp_df, values='Total', index='Year', columns='Age').loc[year]
@@ -90,7 +90,7 @@ elif select == 'What Ages are Represented?':
     st.bar_chart(df)
     st.header('3.  Age related to Total:')
     st.markdown('*Here we are examining different combinations of age groups and returning the percent.*')
-    ages = st.multiselect('Ages', age_lst_min)
+    ages = st.multiselect('Ages', age_lst_min, ['18 THRU 19', '_20_', '_21_', '22 THRU 24'])
     if year != 'All':
         ratio_df = pd.pivot_table(age_df, values='Total', index='Year', columns='Age').loc[year]
         if ratio_df[ages].empty is False:
@@ -104,9 +104,9 @@ elif select == 'What Ages are Represented?':
             lst = ((ratio_df[ages].sum(axis=1) / ratio_df['TOTAL']) * 100).round(1).tolist()
             st.dataframe(pd.DataFrame(lst, index=['2012', '2014', '2016', '2018', '2020'], columns=['Percent']))
 
-    over_time = st.selectbox('3.1.  Over Time?', ['No', 'Yes'])
+    over_time = st.selectbox('3.1.  Show chart over time?', ['No', 'Yes'], ['Yes'])
     if over_time == 'Yes':
-        ages_n = st.multiselect('Ages', age_lst)
+        ages_n = st.multiselect('Ages', age_lst, ['18 THRU 19', '_20_', '_21_', '22 THRU 24'])
         df = pd.pivot_table(age_df, values='Total', index='Year', columns='Age')
         dfn = pd.DataFrame(index=df.index)
         for i in ages_n:
@@ -121,7 +121,7 @@ elif select == 'What is the Potential Impact?':
     st.markdown('*Here we are looking into the future.*')
     per = st.slider('Impact Percent', 0.0, 1.0, .05, .05)
     st.markdown('*Select Estimated Implementation Percent*')
-    ages = st.multiselect('Ages', age_lst_min)
+    ages = st.multiselect('Ages', age_lst_min, ['18 THRU 19', '_20_', '_21_', '22 THRU 24'])
     st.markdown('*Select Ages to be affected by the implementation*')
     ages_dic = {i: True for i in ages}
     df = pd.pivot_table(age_df, values='Total', index='Year', columns='Age')[age_lst_min]

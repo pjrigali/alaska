@@ -104,7 +104,7 @@ elif select == 'What Ages are Represented?':
             lst = ((ratio_df[ages].sum(axis=1) / ratio_df['TOTAL']) * 100).round(1).tolist()
             st.dataframe(pd.DataFrame(lst, index=['2012', '2014', '2016', '2018', '2020'], columns=['Percent']))
 
-    over_time = st.selectbox('3.1.  Show chart over time?', ['No', 'Yes'], ['Yes'])
+    over_time = st.selectbox('3.1.  Show chart over time?', ['Yes', 'No'])
     if over_time == 'Yes':
         ages_n = st.multiselect('Ages', age_lst, ['18 THRU 19', '_20_', '_21_', '22 THRU 24'])
         df = pd.pivot_table(age_df, values='Total', index='Year', columns='Age')

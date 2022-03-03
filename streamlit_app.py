@@ -100,8 +100,8 @@ elif select == 'What Age is Represented?':
 
     over_time = st.selectbox('Over Time?', ['No', 'Yes'])
     if over_time == 'Yes':
-        ages_n = st.multiselect('Ages', ['Same as Above'] + age_lst)
-        if ages_n == 'Same as Above':
+        ages_n = st.multiselect('Ages', ['Same as above'] + age_lst)
+        if ages_n == 'Same as above':
             ages_n = ages
         df = pd.pivot_table(age_df, values='Total', index='Year', columns='Age')
         dfn = pd.DataFrame()

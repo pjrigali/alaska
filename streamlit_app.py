@@ -60,8 +60,10 @@ if select == 'Who commits to Voting?':
 
     if pre_post == 'Both':
         ratios = (df['Voted'] / df['Registered']).tolist()
-        col1, col2, col3, col4, col5 = st.columns(5)
-        col1.metric('2016', str(ratios[0]))
+        col1, col2, col3 = st.columns(3)
+        col1.metric('2016', str(round(ratios[0], 2)) +' %')
+        col2.metric('2018', str(round(ratios[1], 2)) + ' %')
+        col3.metric('2018', str(round(ratios[2], 2)) + ' %')
         # st.line_chart()
         st.markdown('Above are the percentage of voters who actually showed up.')
 

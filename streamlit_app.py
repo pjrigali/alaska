@@ -132,6 +132,7 @@ elif select == 'Whats the Potentional Impact?':
         else:
             new_vals[i] = expected[i] + increase[i]
     new_line = pd.DataFrame(new_vals, index=['2022']).round(1)
-    st.dataframe(new_line)
-    st.dataframe(pd.concat([df, new_line]))
+    forecast = pd.concat([df, new_line])
+    st.dataframe(forecast)
+    st.line_chart(forecast)
 

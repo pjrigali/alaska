@@ -78,7 +78,7 @@ elif select == 'What Age is Represented?':
         age_lst = ['18 THRU 19', '20', '21', '22 THRU 24', '25 THRU 34', '35 THRU 44', '45 THRU 54', '55 THRU 59',
                    '60 THRU 61', '62 THRU 64', '65 THRU 74', 'ABOVE 75', 'TOTAL']
         ages = st.selectbox('Ages', age_lst)
-        temp_df = age_df[(age_df['Age'] == ages)][['Total', 'Age', 'Year']].set_index('Year')
+        temp_df = age_df[age_df['Age'] == str(ages)][['Total', 'Age', 'Year']].set_index('Year')
         # age_df_lst = []
         # for age in ages:
         #     age_df_lst.append(age_df[age_df['Age'] == age])

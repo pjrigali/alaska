@@ -77,20 +77,20 @@ elif select == 'What Age is Represented?':
     if over_time == 'Yes':
         age_lst = ['18 THRU 19', '20', '21', '22 THRU 24', '25 THRU 34', '35 THRU 44', '45 THRU 54', '55 THRU 59',
                    '60 THRU 61', '62 THRU 64', '65 THRU 74', 'ABOVE 75', 'TOTAL']
-        ages = st.multiselect('Ages', age_lst)
-
-        age_df_lst = []
+        ages = st.selectbox('Ages', age_lst)
+        temp_df = age_df[(age_df['Age'] == ages)][['Total', 'Age', 'Year']].set_index('Year')
+        # age_df_lst = []
         # for age in ages:
         #     age_df_lst.append(age_df[age_df['Age'] == age])
         # temp_df = pd.concat([age_df_lst]).reset_index(drop=True)
 
 
-        age_dic = {age: True for age in ages}
-        age_ind = []
-        for i, j in enumerate(age_df['Age'].tolist()):
-            if j in age_dic:
-                age_ind.append(i)
-        temp_df = age_df.iloc[age_ind]
+        # age_dic = {age: True for age in ages}
+        # age_ind = []
+        # for i, j in enumerate(age_df['Age'].tolist()):
+        #     if j in age_dic:
+        #         age_ind.append(i)
+        # temp_df = age_df.iloc[age_ind]
         df = pd.pivot_table(temp_df, values='Total', index='Year', columns='Age')
         st.line_chart(df)
 

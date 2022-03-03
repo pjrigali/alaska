@@ -136,7 +136,8 @@ elif select == 'Whats the Potentional Impact?':
 
     st.line_chart(forecast)
     col1, col2, col3 = st.columns(3)
-    val1 = df.loc['2020'].sum()
+    # val1 = df.loc['2020'].sum()
+    val1 = sum(expected.tolist())
     val2 = round(sum(new_vals.values()),1)
     val3 = (val2-val1) / val1
     col1.metric('Current Forecast', val1)

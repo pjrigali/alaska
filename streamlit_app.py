@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 
-st.title('Alaskan Voting Dashboard - Group 22 (Dream Team)')
+st.title('Alaskan Voting Dashboard')
 st.markdown('*This is a proof of concept demo.*')
 st.markdown(' - This is a dashboard to showcase the potential impact of implementing online voting for the state of Alaska.')
 st.markdown(' - The high level inovation includes distributed ledger technology to speed up the process and ensure accuracy.')
@@ -16,7 +16,7 @@ st.sidebar.markdown("3. Clarify more specific data")
 st.sidebar.title("Future Work:")
 st.sidebar.markdown(" - Gender breakdowns")
 st.sidebar.markdown(" - Party affilation")
-st.sidebar.markdown("*Peter Rigali*")
+st.sidebar.markdown("*Peter Rigali with Group 22 (Dream Team)*")
 
 # Load Data
 turn_df = pd.read_csv('./data/turn.csv', index_col='Unnamed: 0')

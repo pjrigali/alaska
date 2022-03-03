@@ -135,6 +135,10 @@ elif select == 'Whats the Potentional Impact?':
     forecast = pd.concat([df, new_line])
 
     st.line_chart(forecast)
+    col1, col2, col3 = st.columns(3)
+    col1.metric('Current Forecast', df.loc['2020'].sum())
+    col2.metric('Implementation Forecast', new_line.sum())
+
     show = st.selectbox('Show Data', ['No', 'Yes'])
     if show == 'Yes':
         st.dataframe(forecast)

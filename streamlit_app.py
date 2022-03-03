@@ -37,8 +37,8 @@ select = st.selectbox('Desired Analysis', ['...', 'Who Votes?', 'What Ages are R
 if select == 'Who Votes?':
     st.header('2.  Turnout Ratio')
     st.markdown("Comparing registered voters to election vote tally.")
-    default = st.selectbox(label='2.1.  Gender', options=['Female', 'Male', 'Unspecified', 'Total'])
-    pre_post = st.selectbox('2.2.  Status', ['Registered', 'Voted', 'Both'], 'Both')
+    default = st.selectbox(label='2.1.  Gender', options=['Total', 'Female', 'Male', 'Unspecified'])
+    pre_post = st.selectbox('2.2.  Status', ['Both', 'Registered', 'Voted'])
     st.markdown("If 'Both' is selected, ratios will be plotted.")
 
     if default is 'Unspecified':

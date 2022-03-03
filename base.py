@@ -140,9 +140,12 @@ def load_data():
     turn_out_repo = 'data\\Turn Out'
     election_repo = 'data\\Election'
     age_repo = 'data\\Age'
-    turn_out = next(os.walk(turn_out_repo))[2]
-    election = next(os.walk(election_repo))[2]
-    age = next(os.walk(age_repo))[2]
+    # turn_out = next(os.walk(turn_out_repo))[2]
+    turn_out = ['2016.txt', '2018.txt', '2020.txt']
+    # election = next(os.walk(election_repo))[2]
+    election = ['2014.txt', '2016.txt', '2018.txt', '2020.txt']
+    # age = next(os.walk(age_repo))[2]
+    age = ['2012.txt', '2014.txt', '2016.txt', '2018.txt', '2020.txt']
     turn_out_dic = load_turnout(file_lst=turn_out, repo=turn_out_repo)
     election_dic = load_election(file_lst=election, repo=election_repo)
     age_dic = load_age(file_lst=age, repo=age_repo)

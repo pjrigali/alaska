@@ -31,7 +31,7 @@ age_lst_min = ['18 THRU 19', '_20_', '_21_', '22 THRU 24', '25 THRU 34', '35 THR
 
 # Start the page
 st.header('1.  Select Desired Viz')
-select = st.selectbox('Desired Analysis', ['...', 'Who commits to Voting?', 'What Age is Represented?', 'Whats the Potentional Impact?'])
+select = st.selectbox('Desired Analysis', ['...', 'Who commits to Voting?', 'What Age is Represented?', 'Whats the Potential Impact?'])
 
 # Registered Verse Turnout
 if select == 'Who commits to Voting?':

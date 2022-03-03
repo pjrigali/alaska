@@ -33,8 +33,8 @@ st.header('1.  Select Desired Viz')
 select = st.selectbox('Desired Analysis', ['...', 'Who commits to Voting?', 'What Age is Represented?'])
 
 # Registered Verse Turnout
-if select == '2.  Who commits to Voting?':
-    st.header('Turnout Ratio')
+if select == 'Who commits to Voting?':
+    st.header('2.  Turnout Ratio')
     st.markdown("Here we are comparing the amount of registed voters to those who actually show.")
     default = st.selectbox('2.1: Gender', ['Female', 'Male', 'Unspecified', 'Total'])
     pre_post = st.selectbox('2.2: Status', ['Registered', 'Voted', 'Both'])
@@ -78,7 +78,7 @@ if select == '2.  Who commits to Voting?':
 
 
 # Age Group Overview
-elif select == '2.  What Age is Represented?':
+elif select == 'What Age is Represented?':
     year = st.selectbox('2.1.  Year', ['2012', '2014', '2016', '2018', '2020', 'All'])
     temp_df = age_df[(age_df['Age'] != 'TOTAL') & (age_df['Age'] != 'UNKNOWN')][['Total', 'Age', 'Year']].set_index('Year')
     if year != 'All':

@@ -101,12 +101,19 @@ elif select == 'What Age is Represented?':
     over_time = st.selectbox('Over Time?', ['No', 'Yes'])
     if over_time == 'Yes':
         ages_n = st.multiselect('Ages', ['Same as above'] + age_lst)
-        if ages_n == 'Same as above':
-            ages_n = ages
         df = pd.pivot_table(age_df, values='Total', index='Year', columns='Age')
-        dfn = pd.DataFrame()
-        for i in ages_n:
-            dfn[i] = df[i].tolist()
+        if ages_n == 'Same as above':
+            dfn = pd.DataFrame()
+            for i in ages:
+                dfn[i] = df[i].tolist()
+        else:
+            dfn = pd.DataFrame()
+            for i in ages_n:
+                dfn[i] = df[i].tolist()
+
+        # dfn = pd.DataFrame()
+        # for i in ages_n:
+        #     dfn[i] = df[i].tolist()
         st.line_chart(dfn)
         show = st.selectbox('Show Data', ['No', 'Yes'])
         if show == 'Yes':

@@ -92,10 +92,11 @@ elif select == 'What Age is Represented?':
     ages = st.multiselect('Ages', age_lst_min)
     if year != 'All':
         ratio_df = pd.pivot_table(age_df, values='Total', index='Year', columns='Age').loc[year]
-        st.dataframe(ratio_df[ages])
-        val = round((sum(ratio_df[ages].tolist()) / int(ratio_df['TOTAL'])) * 100, 1)
-        col1, col2, col3 = st.columns(3)
-        col1.metric(year, str(val) + ' %')
+        if ratio_df[ages].empty is False:
+            st.dataframe(ratio_df[ages])
+            val = round((sum(ratio_df[ages].tolist()) / int(ratio_df['TOTAL'])) * 100, 1)
+            col1, col2, col3 = st.columns(3)
+            col1.metric(year, str(val) + ' %')
     else:
         ratio_df = pd.pivot_table(age_df, values='Total', index='Year', columns='Age')
         lst = ((ratio_df[ages].sum(axis=1) / ratio_df['TOTAL']) * 100).round(1).tolist()

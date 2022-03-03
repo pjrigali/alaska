@@ -19,9 +19,11 @@ election_df = pd.read_csv('./data/election.csv', index_col='Unnamed: 0')
 age_df = pd.read_csv('./data/age.csv', index_col='Unnamed: 0')
 
 # Registered Verse Turnout
-st.header('Comparing Registered and Voting Numbers')
+st.header('Registered and Voting Numbers')
+st.markdown("Here we are comparing the amount of registed voters to those who actually show.")
 default = st.selectbox('Default', ['Female', 'Male', 'Unspecified', 'Total'])
 pre_post = st.selectbox('Default', ['Registered', 'Voted', 'Both'])
+st.markdown("If Both is selected, ratios will be plotted")
 
 if default is 'Unspecified':
     default = 'Unknown'
@@ -39,31 +41,7 @@ else:
             ['Year', 'Female', 'Male', 'Unknown']].set_index('Year').sum(axis=1)
         df = pd.concat([df1, df2], axis=1)
         df.columns = ['Voted', 'Registered']
-        # df = turn_df[(turn_df['Age'] == 'TOTALS')][['Year', 'Female', 'Male', 'Unknown']].set_index('Year').sum(
-        #     axis=1)
-        # col_lst = []
-        # cols = {}
-        # for i in list(df.index):
-        #     if i not in cols:
-        #         cols[i] = True
-        #         col_lst.append(str(i) + '_Registered')
-        #     else:
-        #         col_lst.append(str(i) + '_Voted')
-        # df.index = col_lst
-        # df = pd.DataFrame([df.tolist()], columns=col_lst, index=[0])
-
-        # df = turn_df[(turn_df['Age'] == 'TOTALS')][['Year', 'Female', 'Male', 'Unknown']].set_index('Year').T
-        # col_lst = []
-        # cols = {}
-        # for i in df.columns:
-        #     if i not in cols:
-        #         cols[i] = True
-        #         col_lst.append(str(i) + '_Registered')
-        #     else:
-        #         col_lst.append(str(i) + '_Voted')
-        # df.columns = col_lst
     else:
-        # df = turn_df[(turn_df['Age'] == 'TOTALS')][['Year', default]].set_index('Year')
         df1 = turn_df[(turn_df['Age'] == 'TOTALS') & (turn_df['Pre or Post'] == 'Voted')][
             ['Year', default]].set_index('Year')
         df1.columns = ['Voted']
@@ -71,4 +49,9 @@ else:
             ['Year', default]].set_index('Year')
         df2.columns = ['Registered']
         df = pd.concat([df1, df2], axis=1)
+
 st.bar_chart(df)
+
+if pre_post == 'Both':
+    st.line_chart(df['Voted'] / df['Registered'])
+    st.markdown('Above are the percentage of voters who actually showed up.')

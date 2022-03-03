@@ -108,7 +108,7 @@ elif select == 'What Ages are Represented?':
     if over_time == 'Yes':
         ages_n = st.multiselect('Ages', age_lst)
         df = pd.pivot_table(age_df, values='Total', index='Year', columns='Age')
-        dfn = pd.DataFrame()
+        dfn = pd.DataFrame(index=df.index)
         for i in ages_n:
             dfn[i] = df[i].tolist()
         st.line_chart(dfn)

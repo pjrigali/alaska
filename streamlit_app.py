@@ -83,7 +83,7 @@ elif select == 'What Age is Represented?':
     ages = st.multiselect('Ages', age_lst)
     dfn = pd.DataFrame()
     for i in ages:
-        dfn[i] = df.loc[i]
+        dfn[i] = df[i]
     st.dataframe(df)
     st.dataframe(dfn)
     # col1 = st.columns(1)

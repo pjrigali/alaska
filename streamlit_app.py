@@ -19,7 +19,8 @@ election_df = pd.read_csv('./data/election.csv', index_col='Unnamed: 0')
 age_df = pd.read_csv('./data/age.csv', index_col='Unnamed: 0', dtype={'Age': 'str', 'Year': 'str'})
 age_lst = ['18 THRU 19', '_20_', '_21_', '22 THRU 24', '25 THRU 34', '35 THRU 44', '45 THRU 54', '55 THRU 59',
            '60 THRU 61', '62 THRU 64', '65 THRU 74', 'ABOVE 75', 'TOTAL']
-
+age_lst_min = ['18 THRU 19', '_20_', '_21_', '22 THRU 24', '25 THRU 34', '35 THRU 44', '45 THRU 54', '55 THRU 59',
+               '60 THRU 61', '62 THRU 64', '65 THRU 74', 'ABOVE 75']
 st.header('Select Desired Viz')
 select = st.selectbox('Desired Analysis', ['...', 'Who commits to Voting?', 'What Age is Represented?'])
 
@@ -77,14 +78,13 @@ elif select == 'What Age is Represented?':
         df = pd.pivot_table(temp_df, values='Total', index='Year', columns='Age').sum()
     st.bar_chart(df)
 
-    ages = st.multiselect('Ages', age_lst)
+    ages = st.multiselect('Ages', age_lst_min)
     if year != 'All':
         ratio_df = pd.pivot_table(age_df, values='Total', index='Year', columns='Age').loc[year]
         st.dataframe(ratio_df[ages])
-        val = sum(ratio_df[ages].tolist()) / int(ratio_df['TOTAL'])
-        # val =
-        col1, co32, col3 = st.columns(3)
-        col1.metric(year, str(val))
+        val = round((sum(ratio_df[ages].tolist()) / int(ratio_df['TOTAL'])) * 100, 1)
+        col1= st.columns(1)
+        col1.metric(year, str(val) + ' %')
     else:
         ratio_df = pd.pivot_table(age_df, values='Total', index='Year', columns='Age')
         st.dataframe(ratio_df[ages])

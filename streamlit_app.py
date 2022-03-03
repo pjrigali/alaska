@@ -3,8 +3,8 @@ import pandas as pd
 
 st.title('Alaska Voting Dashboard')
 st.markdown('*This is a proof of concept demo.*')
-st.markdown('This is a dashboard to showcase the potential impact of implementing online voting in the state of Alaska.')
-st.markdown('The high level inovation includes distributed ledger technology to speed up the process and ensure accuracy.')
+st.markdown(' - This is a dashboard to showcase the potential impact of implementing online voting for the state of Alaska.')
+st.markdown(' - The high level inovation includes distributed ledger technology to speed up the process and ensure accuracy.')
 
 st.sidebar.title("Description:")
 st.sidebar.markdown("This is a dashboard for maniplulating Alaskan voting data.")

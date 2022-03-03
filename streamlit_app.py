@@ -123,17 +123,17 @@ elif select == 'Whats the Potentional Impact?':
     ages = st.multiselect('Ages', age_lst_min)
     ages_dic = {i: True for i in ages}
     df = pd.pivot_table(age_df, values='Total', index='Year', columns='Age')
-    expected = df.mean()[ages]
-    increase = expected * per
+    expected = df.mean()[ages].to_dict()
+    increase = (expected * per).to_dict()
     st.dataframe(expected)
     st.dataframe(increase)
 
     new_line = pd.DataFrame(index=['2020'])
     for i in list(df.index):
         if i not in ages_dic:
-            newline[i] = expected.loc[i]
+            newline[i] = expected[i]
         else:
-            new_line[i] = expected.loc[i] + increase.loc[i]
+            new_line[i] = expected[i] + increase[i]
     st.dataframe(new_line)
 
 

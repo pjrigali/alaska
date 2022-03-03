@@ -18,7 +18,7 @@ st.sidebar.markdown(" - Gender breakdowns")
 st.sidebar.markdown(" - Party affilation")
 st.sidebar.markdown("*Peter Rigali with Group 22 (Dream Team)*")
 url = "https://github.com/pjrigali/alaska"
-st.sidebar.write("Github repo [link](%s)" % url)
+st.sidebar.write("[Github Repo](%s)" % url)
 
 # Load Data
 turn_df = pd.read_csv('./data/turn.csv', index_col='Unnamed: 0')

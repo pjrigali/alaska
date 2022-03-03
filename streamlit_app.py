@@ -26,5 +26,9 @@ pre_post = st.selectbox('Default', ['Registered', 'Voted'])
 if default is 'Unspecified':
     default = 'Unknown'
 
-df = turn_df[(turn_df['Age'] == 'TOTALS') & (turn_df['Pre or Post'] == pre_post)][['Year', default]].set_index('Year')
+if default is 'Total':
+    df = turn_df[(turn_df['Age'] == 'TOTALS') & (turn_df['Pre or Post'] ==  pre_post)][['Year', 'Female', 'Male', 'Unknown']].set_index('Year').sum(axis=1)
+else:
+    df = turn_df[(turn_df['Age'] == 'TOTALS') & (turn_df['Pre or Post'] == pre_post)][['Year', default]].set_index('Year')
+
 st.bar_chart(df)

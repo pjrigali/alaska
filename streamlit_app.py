@@ -81,7 +81,7 @@ if select == 'Who Votes?':
 # Age Group Overview
 elif select == 'What Ages are Represented?':
     st.header("2.  Age Representation")
-    year = st.selectbox('2.1.  Year', ['2012', '2014', '2016', '2018', '2020', 'All'], ['All'])
+    year = st.selectbox('2.1.  Year', ['All', '2012', '2014', '2016', '2018', '2020'])
     temp_df = age_df[(age_df['Age'] != 'TOTAL') & (age_df['Age'] != 'UNKNOWN')][['Total', 'Age', 'Year']].set_index('Year')
     if year != 'All':
         df = pd.pivot_table(temp_df, values='Total', index='Year', columns='Age').loc[year]

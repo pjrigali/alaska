@@ -69,6 +69,8 @@ if select == 'Who commits to Voting?':
         col3.metric('2020', str(round(ratios[2] * 100, 1)) + ' %')
         st.markdown('Above are the percentage of voters who actually showed up.')
 
+
+# Age Group Overview
 elif select == 'What Age is Represented?':
     year = st.selectbox('Year', ['2012', '2014', '2016', '2018', '2020', 'All'])
     temp_df = age_df[(age_df['Age'] != 'TOTAL') & (age_df['Age'] != 'UNKNOWN')][['Total', 'Age', 'Year']].set_index('Year')
@@ -77,7 +79,6 @@ elif select == 'What Age is Represented?':
     else:
         df = pd.pivot_table(temp_df, values='Total', index='Year', columns='Age').sum()
     st.bar_chart(df)
-
     st.header('Age group related to Total:')
     st.markdown('*Here we are examining different combinations of age groups and returning the percent.*')
     ages = st.multiselect('Ages', age_lst_min)
@@ -92,31 +93,14 @@ elif select == 'What Age is Represented?':
         lst = ((ratio_df[ages].sum(axis=1) / ratio_df['TOTAL']) * 100).round(1).tolist()
         st.dataframe(pd.DataFrame(lst, index=['2012', '2014', '2016', '2018', '2020'], columns=['Percent']))
 
-
-    # st.dataframe(dfn)
-    # col1 = st.columns(1)
-    # col1.metric(year, str(sum([df[i] for i in ages]) / df['TOTAL']))
-
-
     over_time = st.selectbox('Over Time?', ['No', 'Yes'])
     if over_time == 'Yes':
-        ages_n = st.multiselect('Ages', ['Same as above'] + age_lst)
+        ages_n = st.multiselect('Ages', age_lst)
         df = pd.pivot_table(age_df, values='Total', index='Year', columns='Age')
-        if ages_n == 'Same as above':
-            dfn = pd.DataFrame()
-            for i in ages:
-                dfn[i] = df[i].tolist()
-        else:
-            dfn = pd.DataFrame()
-            for i in ages_n:
-                dfn[i] = df[i].tolist()
-
-        # dfn = pd.DataFrame()
-        # for i in ages_n:
-        #     dfn[i] = df[i].tolist()
+        dfn = pd.DataFrame()
+        for i in ages_n:
+            dfn[i] = df[i].tolist()
         st.line_chart(dfn)
         show = st.selectbox('Show Data', ['No', 'Yes'])
         if show == 'Yes':
             st.dataframe(dfn)
-
-

@@ -59,7 +59,10 @@ if select == 'Who commits to Voting?':
     st.bar_chart(df)
 
     if pre_post == 'Both':
-        st.line_chart(df['Voted'] / df['Registered'])
+        ratios = (df['Voted'] / df['Registered']).tolist()
+        col1, col2, col3, col4, col5 = st.columns(5)
+        col1.metric('2016', str(ratios[0]))
+        # st.line_chart()
         st.markdown('Above are the percentage of voters who actually showed up.')
 
 elif select == 'What Age is Represented?':

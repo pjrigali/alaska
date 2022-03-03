@@ -63,7 +63,7 @@ if select == 'Who commits to Voting?':
         st.markdown('Above are the percentage of voters who actually showed up.')
 
 elif select == 'What Age is Represented?':
-    year = st.selectbox('Year', [2012, 2014, 2016, 2018, 2020, 'All'])
+    year = st.selectbox('Year', ['2012', '2014', '2016', '2018', '2020', 'All'])
     temp_df = age_df[(age_df['Age'] != 'TOTAL') & (age_df['Age'] != 'UNKNOWN')][['Total', 'Age', 'Year']].set_index('Year')
     if year != 'All':
         df = pd.pivot_table(temp_df, values='Total', index='Year', columns='Age').loc[year]
@@ -82,7 +82,7 @@ elif select == 'What Age is Represented?':
         age_df_lst = []
         for age in ages:
             age_df_lst.append(age_df[age_df['Age'] == age])
-        temp_df = pd.concat(age_df_lst)
+        temp_df = pd.concat([age_df_lst]).reset_index(drop=True)
 
 
         # age_dic = {age: True for age in ages}

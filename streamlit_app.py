@@ -123,4 +123,5 @@ elif select == 'Whats the Potentional Impact?':
     ages = st.multiselect('Ages', age_lst_min)
     df = pd.pivot_table(age_df, values='Total', index='Year', columns='Age').mean()
     st.dataframe(df + df * per)
+    st.dataframe(df)
 

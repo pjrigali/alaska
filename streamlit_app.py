@@ -85,8 +85,9 @@ elif select == 'What Age is Represented?':
     for i in ages:
         dfn[i] = df.loc[i]
     st.dataframe(df)
-    col1 = st.columns(1)
-    col1.metric(year, dfn / df['TOTAL'])
+    st.dataframe(dfn)
+    # col1 = st.columns(1)
+    # col1.metric(year, dfn / df['TOTAL'])
 
 
     over_time = st.selectbox('Over Time?', ['No', 'Yes'])

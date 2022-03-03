@@ -121,11 +121,22 @@ elif select == 'Whats the Potentional Impact?':
     st.markdown('*Here we are looking into the future.*')
     per = st.slider('Impact Percent', 0.0, 1.0, .05, .05)
     ages = st.multiselect('Ages', age_lst_min)
+    ages_dic = {i: True for i in ages}
     df = pd.pivot_table(age_df, values='Total', index='Year', columns='Age')
     expected = df.mean()[ages]
     increase = expected * per
     st.dataframe(expected)
     st.dataframe(increase)
+
+    new_line = pd.DataFrame(index=['2020'])
+    for i in list(df.index):
+        if i not in ages_dic:
+            newline[i] = expected[i]
+        else:
+            new_line[i] = expected[i] + increase[i]
+    st.dataframe(new_line)
+
+
     # st.dataframe((df.mean() + df.mean() * per).round(1))
     st.dataframe(df)
 

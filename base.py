@@ -2,7 +2,7 @@ import re
 import os
 import pandas as pd
 
-
+# Functions for parsing the data
 def load_turnout(file_lst, repo) -> pd.DataFrame:
     turn_out_dic = {}
     for file in file_lst:

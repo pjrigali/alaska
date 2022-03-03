@@ -121,6 +121,7 @@ elif select == 'Whats the Potentional Impact?':
     st.markdown('*Here we are looking into the future.*')
     per = st.slider('Impact Percent', 0.0, 1.0, .05, .05)
     ages = st.multiselect('Ages', age_lst_min)
+    st.markdown('*Select Ages to be affected by the implementation*')
     ages_dic = {i: True for i in ages}
     df = pd.pivot_table(age_df, values='Total', index='Year', columns='Age')[age_lst_min]
     expected = df.mean()
@@ -143,11 +144,11 @@ elif select == 'Whats the Potentional Impact?':
     val4 = (val2 - val) / val
 
     col1, col2 = st.columns(2)
-    col1.metric('Expected Forecast', int(val1))
+    col1.metric('Expected Voters Count Forecast', int(val1))
     col2.metric('Expected Percent', round(val3 * 100, 1))
 
     col3, col4 = st.columns(2)
-    col3.metric('Implementation Forecast', int(val2))
+    col3.metric('Implementation Voter Count Forecast', int(val2))
     col4.metric('Implementatio Percent Change', round(val4 * 100, 1))
 
     show = st.selectbox('Show Data', ['No', 'Yes'])

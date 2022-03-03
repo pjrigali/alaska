@@ -81,12 +81,12 @@ elif select == 'What Age is Represented?':
     ages = st.multiselect('Ages', age_lst)
     if year != 'All':
         ratio_df = pd.pivot_table(age_df.copy(), values='Total', index='Year', columns='Age').loc[year]
-        st.dataframe(ratio_df[ages])
-        st.dataframe(ratio_df['TOTAL'])
+        st.dataframe(ratio_df)
+        # st.dataframe(ratio_df['TOTAL'])
     else:
         ratio_df = pd.pivot_table(age_df.copy(), values='Total', index='Year', columns='Age')
-        st.dataframe(ratio_df[ages])
-        st.dataframe(ratio_df.loc['TOTAL'])
+        st.dataframe(ratio_df)
+        # st.dataframe(ratio_df.loc['TOTAL'])
 
 
 

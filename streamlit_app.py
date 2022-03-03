@@ -83,7 +83,7 @@ elif select == 'What Age is Represented?':
         st.dataframe(ratio_df[ages])
 
         col1 = st.columns(1)
-        col1.metric(year, str(ratio_df[ages].sum() / ratio_df['TOTAL']))
+        col1.metric(year, str(ratio_df[ages].sum() / ratio_df['TOTAL'].values))
     else:
         ratio_df = pd.pivot_table(age_df, values='Total', index='Year', columns='Age')
         st.dataframe(ratio_df[ages])

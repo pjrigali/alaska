@@ -135,14 +135,18 @@ elif select == 'Whats the Potentional Impact?':
     forecast = pd.concat([df, new_line])
 
     st.line_chart(forecast)
-    col1, col2, col3 = st.columns(3)
+
     val = df.loc['2020'].sum()
     val1 = round(sum(expected.tolist()), 1)
     val2 = round(sum(new_vals.values()),1)
     val3 = (val1 - val) / val
-    val4 = (val1 - val2) / val
+    val4 = (val2 - val) / val
+
+    col1, col2 = st.columns(2)
     col1.metric('Expected Forecast', val1)
     col2.metric('Expected Percent', val3)
+
+    col3, col4 = st.columns(2)
     col2.metric('Implementation Forecast', val2)
     col3.metric('Implementatio Percent Change', val4)
 

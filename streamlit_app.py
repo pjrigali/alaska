@@ -118,6 +118,9 @@ elif select == 'What Age is Represented?':
 
 elif select == 'Whats the Potentional Impact?':
     st.header('2.  Forecasting')
-    st.markdown('blah blah blah')
+    st.markdown('*Here we are looking into the future.*')
     per = st.slider('Impact Percent', 0.0, 1.0, .05, .05)
+    ages = st.multiselect('Ages', age_lst_min)
+    df = pd.pivot_table(age_df, values='Total', index='Year', columns='Age').mean()
+    st.dataframe(df)
 

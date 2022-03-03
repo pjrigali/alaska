@@ -16,7 +16,7 @@ st.markdown('*This is a proof of concept demo.*')
 
 turn_df = pd.read_csv('./data/turn.csv', index_col='Unnamed: 0')
 election_df = pd.read_csv('./data/election.csv', index_col='Unnamed: 0')
-age_df = pd.read_csv('./data/age.csv', index_col='Unnamed: 0')
+age_df = pd.read_csv('./data/age.csv', index_col='Unnamed: 0', dtype={'Age': 'str', 'Year': 'str'})
 
 
 st.header('Select Desired Viz')

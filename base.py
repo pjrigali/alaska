@@ -52,9 +52,9 @@ def load_turnout(file_lst, repo) -> pd.DataFrame:
                 if 'UNKNOWN DOB' in lst[0]:
                     final_dic['UNKNOWN DOB'] = male_female_unknown(lst=lst)
                 elif '20' in lst[0].split(' ')[0]:
-                    final_dic['20'] = male_female_unknown(lst=lst)
+                    final_dic['_20'] = male_female_unknown(lst=lst)
                 elif '21' in lst[0].split(' ')[0]:
-                    final_dic['21'] = male_female_unknown(lst=lst)
+                    final_dic['_21'] = male_female_unknown(lst=lst)
                 elif ' THRU ' in lst[0]:
                     key = ' '.join(lst[0].split(' ')[:3])
                     final_dic[key] = male_female_unknown(lst=lst)

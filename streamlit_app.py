@@ -128,17 +128,14 @@ elif select == 'Whats the Potentional Impact?':
     st.dataframe(expected)
     # st.dataframe(increase)
 
-    # new_line = pd.DataFrame(columns=df.columns, index=['2020'])
     new_vals = {}
     for i in list(df.columns):
         if i not in ages_dic:
             new_vals[i] = expected[i]
         else:
             new_vals[i] = expected[i] + increase[i]
-    new_line = pd.DataFrame(new_vals, index=['2022'])
+    new_line = pd.DataFrame(new_vals, index=['2022']).round(1)
     st.dataframe(new_line)
-
-
     # st.dataframe((df.mean() + df.mean() * per).round(1))
-    st.dataframe(df)
+    st.dataframe(pd.concat([df, new_line]))
 

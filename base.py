@@ -52,9 +52,9 @@ def load_turnout(file_lst, repo) -> pd.DataFrame:
                 if 'UNKNOWN DOB' in lst[0]:
                     final_dic['UNKNOWN DOB'] = male_female_unknown(lst=lst)
                 elif '20' in lst[0].split(' ')[0]:
-                    final_dic['_20_'] = male_female_unknown(lst=lst)
+                    final_dic['20_'] = male_female_unknown(lst=lst)
                 elif '21' in lst[0].split(' ')[0]:
-                    final_dic['_21_'] = male_female_unknown(lst=lst)
+                    final_dic['21_'] = male_female_unknown(lst=lst)
                 elif ' THRU ' in lst[0]:
                     key = ' '.join(lst[0].split(' ')[:3])
                     final_dic[key] = male_female_unknown(lst=lst)
@@ -125,7 +125,7 @@ def load_age(file_lst, repo) -> pd.DataFrame:
                 if ' AND ' in key:
                     key = key.replace('AND', 'THRU')
                 elif '20' in key or '21' in key:
-                    key = '_' + key + '_'
+                    key = key + '_'
                 final_dic[key] = dict(zip(['Total', 'Male', 'Female', 'Unknown'], temp_lst))
             dic[year] = final_dic
 

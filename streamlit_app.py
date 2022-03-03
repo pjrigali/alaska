@@ -33,9 +33,9 @@ if pre_post in {'Registered': True, 'Voted': True}:
         df = turn_df[(turn_df['Age'] == 'TOTALS') & (turn_df['Pre or Post'] == pre_post)][['Year', default]].set_index('Year')
 else:
     if default is 'Total':
-        df1 = turn_out[(turn_out['Age'] == 'TOTALS') & (turn_out['Pre or Post'] == 'Voted')][
+        df1 = turn_df[(turn_df['Age'] == 'TOTALS') & (turn_df['Pre or Post'] == 'Voted')][
             ['Year', 'Female', 'Male', 'Unknown']].set_index('Year').sum(axis=1)
-        df2 = turn_out[(turn_out['Age'] == 'TOTALS') & (turn_out['Pre or Post'] == 'Registered')][
+        df2 = turn_df[(turn_df['Age'] == 'TOTALS') & (turn_df['Pre or Post'] == 'Registered')][
             ['Year', 'Female', 'Male', 'Unknown']].set_index('Year').sum(axis=1)
         df = pd.concat([df1, df2], axis=1)
         df.columns = ['Voted', 'Registered']

@@ -144,8 +144,8 @@ elif select == 'Whats the Potentional Impact?':
     val4 = (val2 - val) / val
 
     col1, col2 = st.columns(2)
-    col1.metric('Expected Voters Count Forecast', int(val1))
-    col2.metric('Expected Percent', round(val3 * 100, 1))
+    col1.metric('Expected Voter Count Forecast', int(val1))
+    col2.metric('Expected Percent Change', round(val3 * 100, 1))
 
     col3, col4 = st.columns(2)
     col3.metric('Implementation Voter Count Forecast', int(val2))

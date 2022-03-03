@@ -21,7 +21,7 @@ age_df = pd.read_csv('./data/age.csv', index_col='Unnamed: 0')
 # Registered Verse Turnout
 st.header('Comparing Registered and Voting Numbers')
 default = st.selectbox('Default', ['Female', 'Male', 'Unspecified', 'Total'])
-pre_post = st.selectbox['Default', ['Registered', 'Voted']]
+pre_post = st.selectbox('Default', ['Registered', 'Voted'])
 
 if default is 'Unspecified':
     default = 'Unknown'

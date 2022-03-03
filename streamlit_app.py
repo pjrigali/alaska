@@ -116,7 +116,7 @@ elif select == 'What Age is Represented?':
         if show == 'Yes':
             st.dataframe(dfn)
 
-elif select == 'Whats the Potentional Impact?':
+elif select == 'Whats the Potential Impact?':
     st.header('2.  Forecasting')
     st.markdown('*Here we are looking into the future.*')
     per = st.slider('Impact Percent', 0.0, 1.0, .05, .05)

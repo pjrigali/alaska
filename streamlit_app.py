@@ -93,7 +93,7 @@ elif select == 'What Ages are Represented?':
     st.bar_chart(df[age_lst_min])
     st.header('3.  Age related to Total:')
     st.markdown('*Here we are examining different combinations of age groups and returning the percent.*')
-    ages = st.multiselect('Ages', age_lst_min, ['18 THRU 19', '_20_', '_21_', '22 THRU 24', '25 THRU 34'])
+    ages = st.multiselect('Ages', age_lst_min, ['18 THRU 19', '20_', '21_', '22 THRU 24', '25 THRU 34'])
     if year != 'All':
         ratio_df = pd.pivot_table(age_df, values='Total', index='Year', columns='Age').loc[year]
         if ratio_df[ages].empty is False:
@@ -109,7 +109,7 @@ elif select == 'What Ages are Represented?':
 
     over_time = st.selectbox('3.1.  Show chart over time?', ['Yes', 'No'])
     if over_time == 'Yes':
-        ages_n = st.multiselect('Ages', age_lst, ['18 THRU 19', '_20_', '_21_', '22 THRU 24', '25 THRU 34'])
+        ages_n = st.multiselect('Ages', age_lst, ['18 THRU 19', '20_', '21_', '22 THRU 24', '25 THRU 34'])
         df = pd.pivot_table(age_df, values='Total', index='Year', columns='Age')
         dfn = pd.DataFrame(index=df.index)
         for i in ages_n:
@@ -124,7 +124,7 @@ elif select == 'What is the Potential Impact?':
     st.markdown('*Looking into the future.*')
     per = st.slider('Impact Percent', -0.5, 0.5, .10, .05)
     st.markdown('*Select Estimated Implementation Percent*')
-    ages = st.multiselect('Ages', age_lst_min, ['18 THRU 19', '_20_', '_21_', '22 THRU 24', '25 THRU 34'])
+    ages = st.multiselect('Ages', age_lst_min, ['18 THRU 19', '20_', '21_', '22 THRU 24', '25 THRU 34'])
     st.markdown('*Select Ages to be affected by the implementation*')
     ages_dic = {i: True for i in ages}
     df = pd.pivot_table(age_df, values='Total', index='Year', columns='Age')[age_lst_min]

@@ -20,15 +20,15 @@ age_df = pd.read_csv('./data/age.csv', index_col='Unnamed: 0')
 
 
 st.header('Select Desired Viz')
-select = st.selectbox('Default', ['Who commits to Voting?', 'What Age is Represented?'])
+select = st.selectbox('Desired Analysis', ['...', 'Who commits to Voting?', 'What Age is Represented?'])
 
 
 # Registered Verse Turnout
 if select == 'Who commits to Voting?':
     st.header('Turnout Ratio')
     st.markdown("Here we are comparing the amount of registed voters to those who actually show.")
-    default = st.selectbox('Default', ['Female', 'Male', 'Unspecified', 'Total'])
-    pre_post = st.selectbox('Default', ['Registered', 'Voted', 'Both'])
+    default = st.selectbox('Gender', ['Female', 'Male', 'Unspecified', 'Total'])
+    pre_post = st.selectbox('Status', ['Registered', 'Voted', 'Both'])
     st.markdown("If 'Both' is selected, ratios will be plotted/")
 
     if default is 'Unspecified':
@@ -63,7 +63,7 @@ if select == 'Who commits to Voting?':
         st.markdown('Above are the percentage of voters who actually showed up.')
 
 elif select == 'What Age is Represented?':
-    year = st.selectbox('Default', ['2012', '2014', '2016', '2018', 2020, 'All'])
+    year = st.selectbox('Year', [2012, 2014, 2016, 2018, 2020, 'All'])
     temp_df = age_df[(age_df['Age'] != 'TOTAL') & (age_df['Age'] != 'UNKNOWN')][['Total', 'Age', 'Year']].set_index('Year')
     if year != 'All':
         df = pd.pivot_table(temp_df, values='Total', index='Year', columns='Age').loc[year]

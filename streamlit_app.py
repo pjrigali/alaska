@@ -70,3 +70,23 @@ elif select == 'What Age is Represented?':
     else:
         df = pd.pivot_table(temp_df, values='Total', index='Year', columns='Age').sum()
     st.bar_chart(df)
+
+
+
+    over_time = st.selectbox('Over Time?', ['No', 'Yes'])
+    if over_time == 'Yes':
+        age_lst = ['18 THRU 19' '20' '21' '22 THRU 24' '25 THRU 34' '35 THRU 44',
+                   '45 THRU 54' '55 THRU 59' '60 THRU 61' '62 THRU 64' '65 THRU 74', 'ABOVE 75', 'TOTAL']
+        ages = st.multiselect('Ages', age_lst)
+
+        age_dic = {age: True for age in ages}
+        age_ind = []
+        for i, j in enumerate(age_df['Age'].tolist()):
+            if j in age_dic:
+                age_ind.append(i)
+        temp_df = age_df.iloc[age_ind]
+        df = pd.pivot_table(temp_df, values='Total', index='Year', columns='Age')
+        st.line_chart(df)
+
+
+

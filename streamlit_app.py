@@ -28,15 +28,15 @@ age_lst_min = ['18 THRU 19', '_20_', '_21_', '22 THRU 24', '25 THRU 34', '35 THR
                '60 THRU 61', '62 THRU 64', '65 THRU 74', 'ABOVE 75']
 
 # Start the page
-st.header('Select Desired Viz')
+st.header('1: Select Desired Viz')
 select = st.selectbox('Desired Analysis', ['...', 'Who commits to Voting?', 'What Age is Represented?'])
 
 # Registered Verse Turnout
-if select == 'Who commits to Voting?':
+if select == '2: Who commits to Voting?':
     st.header('Turnout Ratio')
     st.markdown("Here we are comparing the amount of registed voters to those who actually show.")
-    default = st.selectbox('Gender', ['Female', 'Male', 'Unspecified', 'Total'])
-    pre_post = st.selectbox('Status', ['Registered', 'Voted', 'Both'])
+    default = st.selectbox('2.1: Gender', ['Female', 'Male', 'Unspecified', 'Total'])
+    pre_post = st.selectbox('2.2: Status', ['Registered', 'Voted', 'Both'])
     st.markdown("If 'Both' is selected, ratios will be plotted.")
 
     if default is 'Unspecified':
@@ -77,15 +77,15 @@ if select == 'Who commits to Voting?':
 
 
 # Age Group Overview
-elif select == 'What Age is Represented?':
-    year = st.selectbox('Year', ['2012', '2014', '2016', '2018', '2020', 'All'])
+elif select == '2: What Age is Represented?':
+    year = st.selectbox('2.1: Year', ['2012', '2014', '2016', '2018', '2020', 'All'])
     temp_df = age_df[(age_df['Age'] != 'TOTAL') & (age_df['Age'] != 'UNKNOWN')][['Total', 'Age', 'Year']].set_index('Year')
     if year != 'All':
         df = pd.pivot_table(temp_df, values='Total', index='Year', columns='Age').loc[year]
     else:
         df = pd.pivot_table(temp_df, values='Total', index='Year', columns='Age').sum()
     st.bar_chart(df)
-    st.header('Age group related to Total:')
+    st.header('2.3: Age related to Total:')
     st.markdown('*Here we are examining different combinations of age groups and returning the percent.*')
     ages = st.multiselect('Ages', age_lst_min)
     if year != 'All':
@@ -99,7 +99,7 @@ elif select == 'What Age is Represented?':
         lst = ((ratio_df[ages].sum(axis=1) / ratio_df['TOTAL']) * 100).round(1).tolist()
         st.dataframe(pd.DataFrame(lst, index=['2012', '2014', '2016', '2018', '2020'], columns=['Percent']))
 
-    over_time = st.selectbox('Over Time?', ['No', 'Yes'])
+    over_time = st.selectbox('2.4: Over Time?', ['No', 'Yes'])
     if over_time == 'Yes':
         ages_n = st.multiselect('Ages', age_lst)
         df = pd.pivot_table(age_df, values='Total', index='Year', columns='Age')

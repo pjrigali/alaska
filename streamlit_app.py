@@ -73,18 +73,22 @@ elif select == 'What Age is Represented?':
     temp_df = age_df[(age_df['Age'] != 'TOTAL') & (age_df['Age'] != 'UNKNOWN')][['Total', 'Age', 'Year']].set_index('Year')
     if year != 'All':
         df = pd.pivot_table(temp_df, values='Total', index='Year', columns='Age').loc[year]
+
     else:
         df = pd.pivot_table(temp_df, values='Total', index='Year', columns='Age').sum()
     st.bar_chart(df)
 
-    df = pd.pivot_table(age_df, values='Total', index='Year', columns='Age').loc[year]
+    if year != 'All':
+        ratio_df = pd.pivot_table(age_df, values='Total', index='Year', columns='Age').loc[year]
+    else:
+        ratio_df = pd.pivot_table(age_df, values='Total', index='Year', columns='Age')
     age_lst = ['18 THRU 19', '_20_', '_21_', '22 THRU 24', '25 THRU 34', '35 THRU 44', '45 THRU 54', '55 THRU 59',
                '60 THRU 61', '62 THRU 64', '65 THRU 74', 'ABOVE 75']
     ages = st.multiselect('Ages', age_lst)
-    st.dataframe(df)
+    st.dataframe(ratio_df[ages])
     # st.dataframe(dfn)
-    col1 = st.columns(1)
-    col1.metric(year, str(sum([df[i] for i in ages]) / df['TOTAL']))
+    # col1 = st.columns(1)
+    # col1.metric(year, str(sum([df[i] for i in ages]) / df['TOTAL']))
 
 
     over_time = st.selectbox('Over Time?', ['No', 'Yes'])

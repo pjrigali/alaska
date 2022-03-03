@@ -17,7 +17,8 @@ st.markdown('*This is a proof of concept demo.*')
 turn_df = pd.read_csv('./data/turn.csv', index_col='Unnamed: 0')
 election_df = pd.read_csv('./data/election.csv', index_col='Unnamed: 0')
 age_df = pd.read_csv('./data/age.csv', index_col='Unnamed: 0', dtype={'Age': 'str', 'Year': 'str'})
-
+age_lst = ['18 THRU 19', '_20_', '_21_', '22 THRU 24', '25 THRU 34', '35 THRU 44', '45 THRU 54', '55 THRU 59',
+           '60 THRU 61', '62 THRU 64', '65 THRU 74', 'ABOVE 75', 'TOTAL']
 
 st.header('Select Desired Viz')
 select = st.selectbox('Desired Analysis', ['...', 'Who commits to Voting?', 'What Age is Represented?'])
@@ -29,7 +30,7 @@ if select == 'Who commits to Voting?':
     st.markdown("Here we are comparing the amount of registed voters to those who actually show.")
     default = st.selectbox('Gender', ['Female', 'Male', 'Unspecified', 'Total'])
     pre_post = st.selectbox('Status', ['Registered', 'Voted', 'Both'])
-    st.markdown("If 'Both' is selected, ratios will be plotted/")
+    st.markdown("If 'Both' is selected, ratios will be plotted.")
 
     if default is 'Unspecified':
         default = 'Unknown'
@@ -59,12 +60,12 @@ if select == 'Who commits to Voting?':
     st.bar_chart(df)
 
     if pre_post == 'Both':
+        st.header('Turnout Ratios')
         ratios = (df['Voted'] / df['Registered']).tolist()
         col1, col2, col3 = st.columns(3)
         col1.metric('2016', str(round(ratios[0] * 100, 1)) +' %')
         col2.metric('2018', str(round(ratios[1] * 100, 1)) + ' %')
         col3.metric('2020', str(round(ratios[2] * 100, 1)) + ' %')
-        # st.line_chart()
         st.markdown('Above are the percentage of voters who actually showed up.')
 
 elif select == 'What Age is Represented?':
@@ -76,10 +77,20 @@ elif select == 'What Age is Represented?':
         df = pd.pivot_table(temp_df, values='Total', index='Year', columns='Age').sum()
     st.bar_chart(df)
 
+    df = pd.pivot_table(age_df, values='Total', index='Year', columns='Age').loc[year]
+    age_lst = ['18 THRU 19', '_20_', '_21_', '22 THRU 24', '25 THRU 34', '35 THRU 44', '45 THRU 54', '55 THRU 59',
+               '60 THRU 61', '62 THRU 64', '65 THRU 74', 'ABOVE 75']
+    ages = st.multiselect('Ages', age_lst)
+    dfn = pd.DataFrame()
+    for i in ages:
+        dfn[i] = df[i].tolist()
+    st.dataframe(dfn)
+    col1 = st.columns(1)
+    col1.metric(year, dfn / df['TOTAL'])
+
+
     over_time = st.selectbox('Over Time?', ['No', 'Yes'])
     if over_time == 'Yes':
-        age_lst = ['18 THRU 19', '_20_', '_21_', '22 THRU 24', '25 THRU 34', '35 THRU 44', '45 THRU 54', '55 THRU 59',
-                   '60 THRU 61', '62 THRU 64', '65 THRU 74', 'ABOVE 75', 'TOTAL']
         ages = st.multiselect('Ages', age_lst)
         df = pd.pivot_table(age_df, values='Total', index='Year', columns='Age')
         dfn = pd.DataFrame()

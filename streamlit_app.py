@@ -82,7 +82,7 @@ elif select == 'What Age is Represented?':
                '60 THRU 61', '62 THRU 64', '65 THRU 74', 'ABOVE 75']
     ages = st.multiselect('Ages', age_lst)
     st.dataframe(df)
-    st.dataframe(dfn)
+    # st.dataframe(dfn)
     col1 = st.columns(1)
     col1.metric(year, str(sum([df[i] for i in ages]) / df['TOTAL']))
 

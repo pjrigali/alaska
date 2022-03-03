@@ -17,6 +17,7 @@ st.sidebar.markdown(" - Adoption Slider")
 st.sidebar.markdown(" - More gender breakdowns")
 st.sidebar.markdown(" - Party affilation")
 st.sidebar.markdown("*Peter Rigali*")
+
 # Load Data
 turn_df = pd.read_csv('./data/turn.csv', index_col='Unnamed: 0')
 election_df = pd.read_csv('./data/election.csv', index_col='Unnamed: 0')
@@ -30,7 +31,7 @@ age_lst_min = ['18 THRU 19', '_20_', '_21_', '22 THRU 24', '25 THRU 34', '35 THR
 
 # Start the page
 st.header('1.  Select Desired Viz')
-select = st.selectbox('Desired Analysis', ['...', 'Who commits to Voting?', 'What Age is Represented?'])
+select = st.selectbox('Desired Analysis', ['...', 'Who commits to Voting?', 'What Age is Represented?', 'Whats the Potentional Impact?'])
 
 # Registered Verse Turnout
 if select == 'Who commits to Voting?':
@@ -114,3 +115,9 @@ elif select == 'What Age is Represented?':
         show = st.selectbox('Show Data', ['No', 'Yes'])
         if show == 'Yes':
             st.dataframe(dfn)
+
+elif select == 'Whats the Potentional Impact?':
+    st.header('2.  Forecasting')
+    st.markdown('blah blah blah')
+    per = st.slider('Impact Percent', 0.0, 1.0, .05)
+

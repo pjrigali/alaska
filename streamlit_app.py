@@ -122,6 +122,10 @@ elif select == 'Whats the Potentional Impact?':
     per = st.slider('Impact Percent', 0.0, 1.0, .05, .05)
     ages = st.multiselect('Ages', age_lst_min)
     df = pd.pivot_table(age_df, values='Total', index='Year', columns='Age')
-    st.dataframe(df.mean() + df.mean() * per)
+    expected = df.mean()[ages]
+    increase = expected * per
+    st.dataframe(expected)
+    st.dataframe(increase)
+    # st.dataframe((df.mean() + df.mean() * per).round(1))
     st.dataframe(df)
 

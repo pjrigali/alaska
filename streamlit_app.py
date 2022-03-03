@@ -10,6 +10,7 @@ st.sidebar.title("How to Use:")
 st.sidebar.markdown("1. Select the desired Analysis")
 st.sidebar.markdown("2. Select desired Gender Status or Year")
 st.sidebar.markdown("*For best Results use 'Both' and 'All'.*")
+st.sidebar.markdown("3. Clarify more specific data")
 st.sidebar.title("Future Work:")
 st.sidebar.markdown("Forecasting w/ sliders")
 st.sidebar.markdown("Adoption Slider")
@@ -85,7 +86,7 @@ elif select == '2: What Age is Represented?':
     else:
         df = pd.pivot_table(temp_df, values='Total', index='Year', columns='Age').sum()
     st.bar_chart(df)
-    st.header('2.3: Age related to Total:')
+    st.header('3: Age related to Total:')
     st.markdown('*Here we are examining different combinations of age groups and returning the percent.*')
     ages = st.multiselect('Ages', age_lst_min)
     if year != 'All':
@@ -99,7 +100,7 @@ elif select == '2: What Age is Represented?':
         lst = ((ratio_df[ages].sum(axis=1) / ratio_df['TOTAL']) * 100).round(1).tolist()
         st.dataframe(pd.DataFrame(lst, index=['2012', '2014', '2016', '2018', '2020'], columns=['Percent']))
 
-    over_time = st.selectbox('2.4: Over Time?', ['No', 'Yes'])
+    over_time = st.selectbox('3.1: Over Time?', ['No', 'Yes'])
     if over_time == 'Yes':
         ages_n = st.multiselect('Ages', age_lst)
         df = pd.pivot_table(age_df, values='Total', index='Year', columns='Age')

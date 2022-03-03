@@ -5,7 +5,7 @@ st.title('Alaska Voting Dashboard')
 st.markdown('*This is a proof of concept demo.*')
 
 st.sidebar.title("Description:")
-st.sidebar.markdown("This is a dashboard for maniplulating alaska voting data.")
+st.sidebar.markdown("This is a dashboard for maniplulating Alaska voting data.")
 st.sidebar.title("How to Use:")
 st.sidebar.markdown("1. Select the desired Analysis")
 st.sidebar.markdown("2. Select desired Gender Status or Year")
@@ -31,14 +31,14 @@ age_lst_min = ['18 THRU 19', '_20_', '_21_', '22 THRU 24', '25 THRU 34', '35 THR
 
 # Start the page
 st.header('1.  Select Desired Viz')
-select = st.selectbox('Desired Analysis', ['...', 'Who commits to Voting?', 'What Age is Represented?', 'Whats the Potential Impact?'])
+select = st.selectbox('Desired Analysis', ['...', 'Who commits to Voting?', 'What Ages are Represented?', 'What is the Potential Impact?'])
 
 # Registered Verse Turnout
 if select == 'Who commits to Voting?':
     st.header('2.  Turnout Ratio')
     st.markdown("Here we are comparing the amount of registed voters to those who actually show.")
-    default = st.selectbox('2.1: Gender', ['Female', 'Male', 'Unspecified', 'Total'])
-    pre_post = st.selectbox('2.2: Status', ['Registered', 'Voted', 'Both'])
+    default = st.selectbox('2.1.  Gender', ['Female', 'Male', 'Unspecified', 'Total'])
+    pre_post = st.selectbox('2.2.  Status', ['Registered', 'Voted', 'Both'])
     st.markdown("If 'Both' is selected, ratios will be plotted.")
 
     if default is 'Unspecified':
@@ -79,7 +79,7 @@ if select == 'Who commits to Voting?':
 
 
 # Age Group Overview
-elif select == 'What Age is Represented?':
+elif select == 'What Ages are Represented?':
     st.header("2.  Age Representation")
     year = st.selectbox('2.1.  Year', ['2012', '2014', '2016', '2018', '2020', 'All'])
     temp_df = age_df[(age_df['Age'] != 'TOTAL') & (age_df['Age'] != 'UNKNOWN')][['Total', 'Age', 'Year']].set_index('Year')
@@ -116,7 +116,7 @@ elif select == 'What Age is Represented?':
         if show == 'Yes':
             st.dataframe(dfn)
 
-elif select == 'Whats the Potential Impact?':
+elif select == 'What is the Potential Impact?':
     st.header('2.  Forecasting')
     st.markdown('*Here we are looking into the future.*')
     per = st.slider('Impact Percent', 0.0, 1.0, .05, .05)

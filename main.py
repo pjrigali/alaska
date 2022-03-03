@@ -8,5 +8,3 @@ turn_out, election, age = load_data()
 # Save Data
 for key, val in {'turn.csv': turn_out,'election.csv': election,'age.csv': age}.items():
     val.to_csv('data\\' + key, header=True)
-
-age_df

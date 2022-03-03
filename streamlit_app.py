@@ -4,26 +4,32 @@ import pandas as pd
 st.title('Alaska Voting Dashboard')
 st.markdown('*This is a proof of concept demo.*')
 
-# st.sidebar.title("Description:")
-# st.sidebar.markdown("This is a web application version of the Cold-War-Zombies python package. The python version allows you to have multiples of the same weapon.")
-# st.sidebar.title("How to Use:")
-# st.sidebar.markdown("1. Select the desired zombie round")
-# st.sidebar.markdown("2. Select desired weapons for comparison")
-# st.sidebar.markdown("3. Select the desired weapon attachments")
-# st.sidebar.markdown("4. View comparison tables below")
-# st.sidebar.title("Weapons:")
-# st.sidebar.markdown("*All weapons are included up until mid-season 6.*")
+st.sidebar.title("Description:")
+st.sidebar.markdown("This is a dashboard for maniplulating alaska voting data")
+st.sidebar.title("How to Use:")
+st.sidebar.markdown("1. Select the desired Analysis")
+st.sidebar.markdown("2. Select desired Gender Status or Year")
+st.sidebar.markdown("*For best Results use 'Both' and 'All'.*")
+st.sidebar.title("Future Work:")
+st.sidebar.markdown("Forecasting w/ sliders")
+st.sidebar.markdown("Adoption Slider")
+st.sidebar.markdown("More gender breakdowns")
+st.sidebar.markdown("Party affilation")
 
+# Load Data
 turn_df = pd.read_csv('./data/turn.csv', index_col='Unnamed: 0')
 election_df = pd.read_csv('./data/election.csv', index_col='Unnamed: 0')
 age_df = pd.read_csv('./data/age.csv', index_col='Unnamed: 0', dtype={'Age': 'str', 'Year': 'str'})
+
+# Helper Lists
 age_lst = ['18 THRU 19', '_20_', '_21_', '22 THRU 24', '25 THRU 34', '35 THRU 44', '45 THRU 54', '55 THRU 59',
            '60 THRU 61', '62 THRU 64', '65 THRU 74', 'ABOVE 75', 'TOTAL']
 age_lst_min = ['18 THRU 19', '_20_', '_21_', '22 THRU 24', '25 THRU 34', '35 THRU 44', '45 THRU 54', '55 THRU 59',
                '60 THRU 61', '62 THRU 64', '65 THRU 74', 'ABOVE 75']
+
+# Start the page
 st.header('Select Desired Viz')
 select = st.selectbox('Desired Analysis', ['...', 'Who commits to Voting?', 'What Age is Represented?'])
-
 
 # Registered Verse Turnout
 if select == 'Who commits to Voting?':

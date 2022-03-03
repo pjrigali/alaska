@@ -14,10 +14,11 @@ st.sidebar.markdown("4. View comparison tables below")
 st.sidebar.title("Weapons:")
 st.sidebar.markdown("*All weapons are included up until mid-season 6.*")
 
-uploaded_file = st.file_uploader('data/turn.csv')
-if uploaded_file is not None:
-  df = pd.read_csv(uploaded_file)
-  st.write(df)
+# uploaded_file = st.file_uploader('./data/turn.csv')
+df = pd.read_csv('./data/turn.csv')
+# if uploaded_file is not None:
+
+  # st.write(df)
 # turn_df = pd.read_csv(, index_col='Unnamed: 0')
 # election_df = pd.read_csv(st.file_uploader('data/election.csv'), index_col='Unnamed: 0')
 # age_df = pd.read_csv(st.file_uploader('data/age.csv'), index_col='Unnamed: 0')

@@ -1,11 +1,13 @@
 import streamlit as st
 import pandas as pd
 
+# Explantion
 st.title('Alaskan Voting Dashboard')
 st.markdown('*This is a proof of concept demo.*')
 st.markdown('This is a dashboard to showcase the potential impact of implementing online voting for the state of Alaska.')
 st.markdown('The high level inovation includes distributed ledger technology to speed up the legacy process, ensure accuracy and provide operational cost efficencies.')
 
+# Sidebar
 st.sidebar.title("Description:")
 st.sidebar.markdown("This is a dashboard for maniplulating Alaskan voting data.")
 st.sidebar.title("How to Use:")
@@ -41,7 +43,7 @@ if select == 'Who Votes?':
     st.markdown("Comparing registered voters to election vote tally.")
     default = st.selectbox(label='2.1.  Gender', options=['Total', 'Female', 'Male', 'Unspecified'])
     pre_post = st.selectbox('2.2.  Status', ['Both', 'Registered', 'Voted'])
-    st.markdown("If 'Both' is selected, ratios will be plotted.")
+    st.markdown("*If 'Both' is selected, ratios will be plotted.*")
 
     if default is 'Unspecified':
         default = 'Unknown'
@@ -72,13 +74,12 @@ if select == 'Who Votes?':
 
     if pre_post == 'Both':
         st.header('Turnout Ratios')
+        st.markdown('*Percentage of voters who actually showed up.*')
         ratios = (df['Voted'] / df['Registered']).tolist()
         col1, col2, col3 = st.columns(3)
         col1.metric('2016', str(round(ratios[0] * 100, 1)) +' %')
         col2.metric('2018', str(round(ratios[1] * 100, 1)) + ' %')
         col3.metric('2020', str(round(ratios[2] * 100, 1)) + ' %')
-        st.markdown('Above are the percentage of voters who actually showed up.')
-
 
 # Age Group Overview
 elif select == 'What Ages are Represented?':
@@ -92,7 +93,7 @@ elif select == 'What Ages are Represented?':
     st.bar_chart(df)
     st.header('3.  Age related to Total:')
     st.markdown('*Here we are examining different combinations of age groups and returning the percent.*')
-    ages = st.multiselect('Ages', age_lst_min, ['18 THRU 19', '_20_', '_21_', '22 THRU 24'])
+    ages = st.multiselect('Ages', age_lst_min, ['18 THRU 19', '_20_', '_21_', '22 THRU 24', '25 THRU 34'])
     if year != 'All':
         ratio_df = pd.pivot_table(age_df, values='Total', index='Year', columns='Age').loc[year]
         if ratio_df[ages].empty is False:
@@ -108,7 +109,7 @@ elif select == 'What Ages are Represented?':
 
     over_time = st.selectbox('3.1.  Show chart over time?', ['Yes', 'No'])
     if over_time == 'Yes':
-        ages_n = st.multiselect('Ages', age_lst, ['18 THRU 19', '_20_', '_21_', '22 THRU 24'])
+        ages_n = st.multiselect('Ages', age_lst, ['18 THRU 19', '_20_', '_21_', '22 THRU 24', '25 THRU 34'])
         df = pd.pivot_table(age_df, values='Total', index='Year', columns='Age')
         dfn = pd.DataFrame(index=df.index)
         for i in ages_n:
@@ -123,7 +124,7 @@ elif select == 'What is the Potential Impact?':
     st.markdown('*Looking into the future.*')
     per = st.slider('Impact Percent', -0.5, 0.5, .10, .05)
     st.markdown('*Select Estimated Implementation Percent*')
-    ages = st.multiselect('Ages', age_lst_min, ['18 THRU 19', '_20_', '_21_', '22 THRU 24'])
+    ages = st.multiselect('Ages', age_lst_min, ['18 THRU 19', '_20_', '_21_', '22 THRU 24', '25 THRU 34'])
     st.markdown('*Select Ages to be affected by the implementation*')
     ages_dic = {i: True for i in ages}
     df = pd.pivot_table(age_df, values='Total', index='Year', columns='Age')[age_lst_min]

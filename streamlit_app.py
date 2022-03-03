@@ -78,7 +78,8 @@ elif select == 'What Age is Represented?':
         df = pd.pivot_table(temp_df, values='Total', index='Year', columns='Age').sum()
     st.bar_chart(df)
 
-    st.header('What percent of Total?')
+    st.header('Age group related to Total:')
+    st.markdown('*Here we are examining different combinations of age groups and returning the percent.')
     ages = st.multiselect('Ages', age_lst_min)
     if year != 'All':
         ratio_df = pd.pivot_table(age_df, values='Total', index='Year', columns='Age').loc[year]

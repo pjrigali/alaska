@@ -33,18 +33,24 @@ if pre_post in {'Registered': True, 'Voted': True}:
         df = turn_df[(turn_df['Age'] == 'TOTALS') & (turn_df['Pre or Post'] == pre_post)][['Year', default]].set_index('Year')
 else:
     if default is 'Total':
-        df = turn_df[(turn_df['Age'] == 'TOTALS')][['Year', 'Female', 'Male', 'Unknown']].set_index('Year').sum(
-            axis=1)
-        col_lst = []
-        cols = {}
-        for i in list(df.index):
-            if i not in cols:
-                cols[i] = True
-                col_lst.append(str(i) + '_Registered')
-            else:
-                col_lst.append(str(i) + '_Voted')
-        df.index = col_lst
-        df = pd.DataFrame([df.tolist()], columns=col_lst, index=[0])
+        df1 = turn_out[(turn_out['Age'] == 'TOTALS') & (turn_out['Pre or Post'] == 'Voted')][
+            ['Year', 'Female', 'Male', 'Unknown']].set_index('Year').sum(axis=1)
+        df2 = turn_out[(turn_out['Age'] == 'TOTALS') & (turn_out['Pre or Post'] == 'Registered')][
+            ['Year', 'Female', 'Male', 'Unknown']].set_index('Year').sum(axis=1)
+        df = pd.concat([df1, df2], axis=1)
+        df.columns = ['Voted', 'Registered']
+        # df = turn_df[(turn_df['Age'] == 'TOTALS')][['Year', 'Female', 'Male', 'Unknown']].set_index('Year').sum(
+        #     axis=1)
+        # col_lst = []
+        # cols = {}
+        # for i in list(df.index):
+        #     if i not in cols:
+        #         cols[i] = True
+        #         col_lst.append(str(i) + '_Registered')
+        #     else:
+        #         col_lst.append(str(i) + '_Voted')
+        # df.index = col_lst
+        # df = pd.DataFrame([df.tolist()], columns=col_lst, index=[0])
 
         # df = turn_df[(turn_df['Age'] == 'TOTALS')][['Year', 'Female', 'Male', 'Unknown']].set_index('Year').T
         # col_lst = []

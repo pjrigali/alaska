@@ -5,7 +5,7 @@ st.title('Alaska Voting Dashboard')
 st.markdown('*This is a proof of concept demo.*')
 
 st.sidebar.title("Description:")
-st.sidebar.markdown("This is a dashboard for maniplulating alaska voting data")
+st.sidebar.markdown("This is a dashboard for maniplulating alaska voting data.")
 st.sidebar.title("How to Use:")
 st.sidebar.markdown("1. Select the desired Analysis")
 st.sidebar.markdown("2. Select desired Gender Status or Year")
@@ -16,7 +16,7 @@ st.sidebar.markdown(" - Forecasting w/ sliders")
 st.sidebar.markdown(" - Adoption Slider")
 st.sidebar.markdown(" - More gender breakdowns")
 st.sidebar.markdown(" - Party affilation")
-
+st.sidebar.markdown("*Peter Rigali*")
 # Load Data
 turn_df = pd.read_csv('./data/turn.csv', index_col='Unnamed: 0')
 election_df = pd.read_csv('./data/election.csv', index_col='Unnamed: 0')

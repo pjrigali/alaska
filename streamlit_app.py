@@ -12,7 +12,7 @@ st.sidebar.markdown("2. Select desired Gender Status or Year")
 st.sidebar.markdown("*For best Results use 'Both' and 'All'.*")
 st.sidebar.markdown("3. Clarify more specific data")
 st.sidebar.title("Future Work:")
-st.sidebar.markdown(" - More gender breakdowns")
+st.sidebar.markdown(" - Gender breakdowns")
 st.sidebar.markdown(" - Party affilation")
 st.sidebar.markdown("*Peter Rigali*")
 

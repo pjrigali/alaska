@@ -1,5 +1,4 @@
 import streamlit as st
-from base import load_data
 import pandas as pd
 
 st.title('Alaska Voting Dashboard')
@@ -15,5 +14,6 @@ st.sidebar.markdown("4. View comparison tables below")
 st.sidebar.title("Weapons:")
 st.sidebar.markdown("*All weapons are included up until mid-season 6.*")
 
-
-turn_out, election, age = load_data()
+turn_df = pd.read_csv('data\\turn.csv', index_col='Unnamed: 0')
+election_df = pd.read_csv('data\\election.csv', index_col='Unnamed: 0')
+age_df = pd.read_csv('data\\age.csv', index_col='Unnamed: 0')
